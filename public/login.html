@@ -1,40 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-</head>
-<body>
-    <header>
-        <img src="../src/images/logo.png" width="300px" alt="">
-        <p>Welcome back! Please log in to continue.</p>
-    </header>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login</title>
+        <link rel="stylesheet" href="../src/css/style.css">
+    </head>
+    <body>
+        <section class="m-24 border border-gray-300 shadow-[15px_15px_25px_black] w-[600px] h-[700px] rounded-[20px] items-center justify-center mx-auto bg-white ">
+                    
+                <img src="../src/images/bg-login.jpg" alt="bg-shoes" class="absolute inset-0 w-full h-[940px] object-cover -z-10 blur-[3px]">
 
-    <main>
-        <section>
-      <h2>Login</h2>
-      <form action="/login" method="post">
-        <fieldset>
-            <legend>Account Login</legend>
+                <header class="m-2 p-2">
+                    <div class="grid place-content-center mx-auto p-2.5">
+                        <div class="mb-5 items-center justify-center mx-auto">
+                            <img src="../src/images/logo.png" alt="logo" class="w-[250px] ">
+                        </div>
+                    
+                        <p class="font-semibold text-[18px]">Welcome back! Please log in to continue.</p>
+                    </div>
+                    
+                </header>
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required />
+            <main>
+                <section class="block w-[530px] items-center justify-center mx-auto">
+                    <form class="mx-10 p-5" id="loginForm">
+                        <label for="email" class="font-medium">Email:</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required
+                                class="border rounded-[10px] w-full p-1.5 pl-4 my-4 border-gray-300 focus:border-gray-500 outline-none">
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required />
+                        <label for="password" class="font-medium">Password:</label>
+                        <input type="password" id="password" name="password" placeholder="Enter your password..." required
+                                class="border rounded-[10px] w-full p-1.5 pl-4 my-4 border-gray-300 focus:border-gray-500 outline-none">
 
-            <input type="checkbox" name="remember">
-            <label for="remember">Remember me</label>
+                        
+                        <div class="flex items-center justify-between mb-8">
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox" name="remember" class="mr-2">
+                                Remember me
+                            </label>
+                                <a href="#" class="underline text-sm">Forgot password?</a>
+                        </div>
 
-            <button type="submit">Login</button>
+                        <button id="loginBtn" type="button" disabled class="border-2 px-10 py-1 mx-auto grid place-content-center text-white font-semibold rounded-md
+                                        bg-[linear-gradient(to_right,#B55C0F_0%,#131313_100%)]
+                                        bg-size-[200%_100%]
+                                        bg-left
+                                        transition-all duration-300 ease-in-out
+                                        cursor-not-allowed
+                                        hover:bg-right">Login</button>
 
-            <div>
-                <p>First time here? <a href="">Let’s get you started!</a></p>
-            </div>
-        </fieldset>
-      </form>
-    </section>
-    </main>
-</body>
+                        <div class="items-center justify-center mt-8 mx-auto grid place-items-center">
+                            <p>First time here? <a href="../public/signup.html" class="underline">Let’s get you started!</a></p>
+                        </div>
+                    </form>
+                </section>
+            </main>
+        </section>
+
+        <script>
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const loginBtn = document.getElementById('loginBtn');
+
+            function toggleLoginButton() {
+                if(emailInput.value.trim() !== '' && passwordInput.value.trim() !== '') {
+                loginBtn.disabled = false;
+                loginBtn.classList.remove('cursor-not-allowed');
+                loginBtn.classList.add('cursor-pointer');
+                } else {
+                loginBtn.disabled = true;
+                loginBtn.classList.add('cursor-not-allowed');
+                loginBtn.classList.remove('cursor-pointer');
+                }
+            }
+
+            emailInput.addEventListener('input', toggleLoginButton);
+            passwordInput.addEventListener('input', toggleLoginButton);
+
+            loginBtn.addEventListener('click', () => {
+                window.location.href = '../public/index.html';
+            });
+        </script>
+
+    
+    </body>
 </html>
